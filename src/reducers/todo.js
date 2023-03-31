@@ -1,28 +1,9 @@
 const todoReducer = (state, action) => {
-  switch (action.type) {
-    case "ADD": {
-      return {
-        todos: [
-          ...state.todos,
-          {
-            title: action.value,
-            id:
-              new Date().toLocaleDateString() +
-              "" +
-              new Date().toLocaleTimeString(),
-          },
-        ],
-      };
+    switch (action.type) {
+        case 'delTodo': return state.filter(td => td.id !== action.id);
+        case 'addTodo': return [...state,action.obj];
+        default:  return state;
     }
-    case "DELETE": {
-      return {
-        todos: action.data,
-      };
-    }
-    default: {
-      return state;
-    }
-  }
-};
+}
 
-export { todoReducer };
+export { todoReducer }
